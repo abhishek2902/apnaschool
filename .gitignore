@@ -35,3 +35,5 @@
 
 # Ignore project.rb file
 /project.rb
+/app/assets/builds/*
+!/app/assets/builds/.keep

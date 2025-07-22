@@ -1,0 +1,36 @@
+<div class="mt-18 md:w-1/2 mx-auto min-h-screen flex items-center justify-center bg-gray-100 md:p-4">
+  <div class="bg-white shadow-lg rounded-lg w-full max-w-3xl p-4">
+    <h1 class="text-2xl font-bold text-center text-blue-700 mb-4">
+      Test: <%= @test.title %> Preview
+    </h1>
+
+    <% if @test.questions.any? %>
+      <div class="space-y-4">
+        <% @test.questions.each_with_index do |q, index| %>
+          <div class="p-4 border rounded-lg bg-gray-50 shadow-sm">
+            <p class="font-semibold text-lg text-gray-800 mb-2">
+              Q<%= index + 1 %>: <%= q.content %>
+            </p>
+
+            <ul class="ml-5 space-y-1 text-gray-700 text-sm">
+              <li><strong>A:</strong> <%= q.option_a %></li>
+              <li><strong>B:</strong> <%= q.option_b %></li>
+              <li><strong>C:</strong> <%= q.option_c %></li>
+              <li><strong>D:</strong> <%= q.option_d %></li>
+            </ul>
+
+            <p class="mt-3 text-green-700 font-medium text-sm">
+              ✅ Correct Answer: <%= q.correct_option.upcase %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-600 text-center mt-10">No questions added yet.</p>
+    <% end %>
+
+    <div class="mt-8 text-center">
+      <%= link_to "← Back to Tests", tests_path, class: "inline-block text-white bg-blue-600 hover:bg-blue-700 font-semibold py-2 px-4 rounded-md" %>
+    </div>
+  </div>
+</div>

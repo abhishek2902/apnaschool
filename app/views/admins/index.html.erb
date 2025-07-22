@@ -1,0 +1,599 @@
+
+<!-- Student block -->
+<section class="mt-18 bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-4 text-center">Admin Panel</h2>
+
+    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Student block</h2>
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            
+            <div class="mt-12 max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg ">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Register Student</h2>
+                
+                <%= form_with url:create_student_admins_path,model: @student, local: true, class: "space-y-4" do |f| %>
+
+                <% if @student.errors.any? %>
+                    <div class="text-red-600">
+                    <ul>
+                        <% @student.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                    </div>
+                <% end %>
+
+                <% if @user && @user.errors.any? %>
+                    <div class="text-red-600">
+                    <ul>
+                        <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg %> in user table</li>
+                        <% end %>
+                    </ul>
+                    </div>
+                <% end %>
+
+                <!-- Name Field -->
+                <div>
+                    <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :name, required: true, placeholder: "ex: Jay",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <div>
+                    <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.email_field :email, placeholder: "ex: abc@gmail.com",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Class Field -->
+                <div class="flex justify-between flex-wrap gap-4">
+                    <div>
+                        <%= f.label :classname, "Class", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :classname, required: true, placeholder: "ex: 5",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :roll, "Roll no", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :roll, required: true, placeholder: "ex: 100",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :name, "Age", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :age, required: true, placeholder: "ex: 15",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :dateofbirth, "Date of Birth", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.date_field :dateofbirth, placeholder: "YYYY-MM-DD",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :sex, "Sex", class: "block text-sm font-medium text-gray-700" %>
+                        <fieldset class="flex gap-4 mt-2">
+                            <legend class="sr-only">Sex</legend>
+                            <div class="flex items-center mb-4">
+                                <input id="male" type="radio" name="sex" value="Male" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" checked>
+                                <label for="male" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Male
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input id="female" type="radio" name="sex" value="Female" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="female" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Female
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>                
+                </div>
+                <!-- Father name Field -->
+                <div>
+                    <%= f.label :fathername, "Father name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :fathername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Mother Name Field -->
+                <div>
+                    <%= f.label :mothername, "Mother name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :mothername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Address Content -->
+                <div>
+                    <%= f.label :address, "Address", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_area :address, rows: 4, placeholder: "Add full address",
+                        class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <%= f.submit "Submit Form", class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200" %>
+                </div>
+            
+                <% end %>
+            </div>
+
+            <div class="overflow-x-auto mt-12">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Students Details</h2>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-2 py-3">Roll no.</th>
+                            <th scope="col" class="px-2 py-3">Name</th>
+                            <th scope="col" class="px-2 py-3">Show</th>
+                            <th scope="col" class="px-2 py-3">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @students.each do |student| %>
+                            <tr class="border-b dark:border-gray-700">
+                                <th class="px-2 py-3 font-medium text-gray-300 whitespace-nowrap dark:text-white">
+                                    <%= student.roll %>
+                                </th>                                
+                                <td class="px-2 py-3">
+                                    <%= student.name %>
+                                </td>
+                                <th class="px-2 py-3 max-w-[12rem] truncate">
+                                    <%= button_to "Show", show_student_admin_path(student), method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                                <th class="px-2 py-3">
+                                    <%= button_to "Edit", edit_student_admin_path(student),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                </span>
+                <ul class="inline-flex items-stretch -space-x-px">
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-current="page" class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Next</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- End Student block -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Teacher block -->
+<section class="mt-18 bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+
+    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Teacher block</h2>
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            
+            <div class="mt-12 max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg ">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Register Teacher</h2>
+                
+                <%= form_with url:create_teacher_admins_path,model: @teacher, local: true, class: "space-y-4" do |f| %>
+
+                    <% if @teacher.errors.any? %>
+                        <div class="text-red-600">
+                        <ul>
+                            <% @teacher.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                            <% end %>
+                        </ul>
+                        </div>
+                    <% end %>
+
+                    <% if @user && @user.errors.any? %>
+                        <div class="text-red-600">
+                        <ul>
+                            <% @user.errors.full_messages.each do |msg| %>
+                            <li><%= msg %> in user table</li>
+                            <% end %>
+                        </ul>
+                        </div>
+                    <% end %>
+
+                    <!-- Name Field -->
+                    <div>
+                        <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :name, required: true, placeholder: "ex: Jay",
+                                class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.email_field :email, placeholder: "ex: abc@gmail.com",
+                                class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <!-- Subject Field -->
+                    <div class="flex justify-between flex-wrap gap-4">
+                        <div>
+                            <%= f.label :subject, "Subject", class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :subject, required: true, placeholder: "ex: Maths",
+                                    class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                        </div>
+                        <div>
+                            <%= f.label :roll, "Roll no", class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :roll, required: true, placeholder: "ex: 100",
+                                    class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                        </div>
+                        <div>
+                            <%= f.label :name, "Age", class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :age, required: true, placeholder: "ex: 15",
+                                    class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                        </div>
+                        <div>
+                            <%= f.label :dateofbirth, "Date of Birth", class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.date_field :dateofbirth, placeholder: "YYYY-MM-DD",
+                                    class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                        </div>
+                        <div>
+                            <%= f.label :mobile, "Mobile", class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :mobile, required: true, placeholder: "ex: 9876543210",
+                                    class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                        </div>
+                        <div>
+                            <%= f.label :sex, "Sex", class: "block text-sm font-medium text-gray-700" %>
+                            <fieldset class="flex gap-4 mt-2">
+                                <legend class="sr-only">Sex</legend>
+                                <div class="flex items-center mb-4">
+                                    <input id="male" type="radio" name="sex" value="Male" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" checked>
+                                    <label for="male" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    Male
+                                    </label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="female" type="radio" name="sex" value="Female" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="female" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    Female
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>                
+                    </div>
+                    <!-- Father name Field -->
+                    <div>
+                        <%= f.label :fathername, "Father name", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :fathername, placeholder: "name",
+                                class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <!-- Mother Name Field -->
+                    <div>
+                        <%= f.label :mothername, "Mother name", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :mothername, placeholder: "name",
+                                class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    
+                    <!-- Address Content -->
+                    <div>
+                        <%= f.label :address, "Address", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_area :address, rows: 4, placeholder: "Add full address",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <%= f.submit "Submit Form", class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200" %>
+                    </div>
+            
+                <% end %>
+            </div>
+
+            <div class="overflow-x-auto mt-12">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Teachers Details</h2>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-2 py-3">Roll no.</th>
+                            <th scope="col" class="px-2 py-3">Name</th>
+                            <th scope="col" class="px-2 py-3">Show</th>
+                            <th scope="col" class="px-2 py-3">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @teachers.each do |teacher| %>
+                            <tr class="border-b dark:border-gray-700">
+                                <th class="px-2 py-3 font-medium text-gray-300 whitespace-nowrap dark:text-white">
+                                    <%= teacher.roll %>
+                                </th>                                
+                                <td class="px-2 py-3">
+                                    <%= teacher.name %>
+                                </td>
+                                <th class="px-2 py-3 max-w-[12rem] truncate">
+                                    <%= button_to "Show", show_teacher_admin_path(teacher), method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                                <th class="px-2 py-3">
+                                    <%= button_to "Edit", edit_teacher_admin_path(teacher),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                </span>
+                <ul class="inline-flex items-stretch -space-x-px">
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-current="page" class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Next</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- End Teacher block -->
+
+
+
+
+
+
+
+
+<!-- Admin block -->
+<section class="mt-18 bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+
+    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Admin block</h2>
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            
+            <div class="mt-12 max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg ">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Register Admin</h2>
+                
+                <%= form_with model: @admin, local: true, class: "space-y-4" do |f| %>
+
+                <% if @admin.errors.any? %>
+                    <div class="text-red-600">
+                    <ul>
+                        <% @admin.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                    </div>
+                <% end %>
+
+                <!-- Name Field -->
+                <div>
+                    <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :name, required: true, placeholder: "ex: Jay",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <div>
+                    <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.email_field :email, placeholder: "ex: abc@gmail.com",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Subject Field -->
+                <div class="flex justify-between flex-wrap gap-4">
+                    <div>
+                        <%= f.label :subject, "Subject", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :subject, required: true, placeholder: "ex: Maths",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :roll, "Roll no", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :roll, required: true, placeholder: "ex: 100",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :name, "Age", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :age, required: true, placeholder: "ex: 15",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :dateofbirth, "Date of Birth", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.date_field :dateofbirth, placeholder: "YYYY-MM-DD",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :mobile, "Contact number", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :mobile, required: true, placeholder: "ex: 9365333431",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :sex, "Sex", class: "block text-sm font-medium text-gray-700" %>
+                        <fieldset class="flex gap-4 mt-2">
+                            <legend class="sr-only">Sex</legend>
+                            <div class="flex items-center mb-4">
+                                <input id="male" type="radio" name="sex" value="Male" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" checked>
+                                <label for="male" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Male
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input id="female" type="radio" name="sex" value="Female" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="female" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Female
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>                
+                </div>
+                <!-- Father name Field -->
+                <div>
+                    <%= f.label :fathername, "Father name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :fathername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Mother Name Field -->
+                <div>
+                    <%= f.label :mothername, "Mother name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :mothername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Address Content -->
+                <div>
+                    <%= f.label :address, "Address", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_area :address, rows: 4, placeholder: "Add full address",
+                        class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <%= f.submit "Submit Form", class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200" %>
+                </div>
+            
+                <% end %>
+            </div>
+
+            <div class="overflow-x-auto mt-12">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Admins Details</h2>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-2 py-3">ID no.</th>
+                            <th scope="col" class="px-2 py-3">Name</th>
+                            <th scope="col" class="px-2 py-3">Show</th>
+                            <th scope="col" class="px-2 py-3">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @admins.each do |admin| %>
+                            <tr class="border-b dark:border-gray-700">
+                                <th class="px-2 py-3 font-medium text-gray-300 whitespace-nowrap dark:text-white">
+                                    <%= admin.roll %>
+                                </th>                                
+                                <td class="px-2 py-3">
+                                    <%= admin.name %>
+                                </td>
+                                <th class="px-2 py-3 max-w-[12rem] truncate">
+                                    <%= button_to "Show", admin_path(admin), method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                                <th class="px-2 py-3">
+                                    <%= button_to "Edit", edit_admin_path(admin),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                </span>
+                <ul class="inline-flex items-stretch -space-x-px">
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-current="page" class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span class="sr-only">Next</span>
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- End admin block -->

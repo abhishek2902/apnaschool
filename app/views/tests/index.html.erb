@@ -1,0 +1,64 @@
+
+<!-- Student block -->
+<section class="mt-18 dark:bg-gray-900 md:p-3  antialiased">
+    <h2 class="md:text-3xl font-semibold text-gray-800 mb-4 text-center">Practice Section</h2>
+
+    <div class="mx-auto max-w-screen-xl md:px-4 lg:px-12">
+        <!-- Start coding here -->
+        <div class=" dark:bg-gray-800 relative  sm:rounded-lg overflow-hidden">
+            <% if current_user.admin? || current_user.teacher? %>
+                <%= button_to "Add New Test", new_test_path,method: :get, class: "mt-12 ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+            <% end %>
+
+            <div class="overflow-x-auto mt-6">
+              <h2 class="md:text-xl font-semibold text-gray-800 mb-4 text-center">Tests</h2>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs bg-gray-100 text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-2 py-3">Title</th>
+                            <% if current_user.admin? || current_user.teacher? %>
+                                <th scope="col" class="px-2 py-3">Edit</th>
+                                <th scope="col" class="px-2 py-3">Delete</th>
+                                <th scope="col" class="px-2 py-3">Preview</th>
+                            <% end %>
+                            <th scope="col" class="px-2 py-3">Attempt</th>
+                            <th scope="col" class="px-2 py-3">Pre Att</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @tests.each do |test| %>
+                            <tr class="border-b dark:border-gray-700">
+                                <th class="px-2 py-3 font-medium text-gray-300 whitespace-nowrap dark:text-white flex justify-center items-center">
+                                    <%= test.title %>
+                                </th>
+                                
+                                <% if current_user.admin? || current_user.teacher? %>
+                                    <th class="px-2 py-3">
+                                        <%= button_to "Edit", edit_test_path(test), method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                    </th>
+                                    <th class="px-2 py-3">
+                                        <%= button_to "Delete", test_path(test),method: :delete, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                    </th>
+                                    <th class="px-2 py-3">
+                                        <%= button_to "Show", test_path(test),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                    </th>
+                                <% end %>
+                                <th class="px-2 py-3">
+                                    <%= button_to "Start", attempt_test_path(test),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                                <th class="px-2 py-3">
+                                    <%= button_to "See", attempts_path, method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+                                </th>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+    </div>
+</section>
+<!-- End Student block -->
+
+
+

@@ -1,0 +1,107 @@
+<% if @student.errors.any? %>
+    <div class="text-red-600">
+    <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+    </div>
+<% end %>
+<!-- Student block -->
+<section class="mt-18 bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-4 text-center">Admin Panel</h2>
+
+    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            
+            <div class="mt-12 max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg ">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Edit Student</h2>
+                
+                <%= form_with url:update_student_admin_path(@student),model: @student, local: true, class: "space-y-4" do |f| %>
+
+                <!-- Name Field -->
+                <div>
+                    <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :name, required: true, placeholder: "ex: Jay",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <div>
+                    <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.email_field :email, placeholder: "ex: abc@gmail.com",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Class Field -->
+                <div class="flex justify-between flex-wrap gap-4">
+                    <div>
+                        <%= f.label :classname, "Class", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :classname, required: true, placeholder: "ex: 5",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :roll, "Roll no", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :roll, required: true, placeholder: "ex: 100",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :name, "Age", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.text_field :age, required: true, placeholder: "ex: 15",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :dateofbirth, "Date of Birth", class: "block text-sm font-medium text-gray-700" %>
+                        <%= f.date_field :dateofbirth, placeholder: "YYYY-MM-DD",
+                                class: "mt-1 block w-32 px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                    </div>
+                    <div>
+                        <%= f.label :sex, "Sex", class: "block text-sm font-medium text-gray-700" %>
+                        <fieldset class="flex gap-4 mt-2">
+                            <legend class="sr-only">Sex</legend>
+                            <div class="flex items-center mb-4">
+                                <input id="male" type="radio" name="sex" value="Male" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" checked>
+                                <label for="male" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Male
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input id="female" type="radio" name="sex" value="Female" class="w-4 h-4 border-gray-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="female" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Female
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>                
+                </div>
+                <!-- Father name Field -->
+                <div>
+                    <%= f.label :fathername, "Father name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :fathername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                <!-- Mother Name Field -->
+                <div>
+                    <%= f.label :mothername, "Mother name", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_field :mothername, placeholder: "name",
+                            class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Address Content -->
+                <div>
+                    <%= f.label :address, "Address", class: "block text-sm font-medium text-gray-700" %>
+                    <%= f.text_area :address, rows: 4, placeholder: "Add full address",
+                        class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <%= f.submit "Submit Form", class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200" %>
+                </div>
+            
+                <% end %>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- End Student block -->

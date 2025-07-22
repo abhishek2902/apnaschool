@@ -1,0 +1,35 @@
+<div class="h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-lg rounded-lg p-4 md:w-1/2">
+    <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+      Add Questions to <%= @test.title %> test
+    </h2>
+
+    <%= form_with model: [@test, @question], class: "space-y-4" do |form| %>
+      <div>
+        <%= form.label :content, "Question", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_area :content, rows: 3, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
+      </div>
+
+      <% [:option_a, :option_b, :option_c, :option_d].each_with_index do |opt, i| %>
+        <div>
+          <%= form.label opt, "Option #{('A'.ord + i).chr}", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field opt, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.label :correct_option, "Correct Option (A/B/C/D)", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :correct_option, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit "Add Question", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow" %>
+        <%= link_to "Finish Test", test_path(@test), class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg shadow" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-6">
+    </div>
+  </div>
+</div>
+

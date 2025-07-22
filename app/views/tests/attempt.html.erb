@@ -1,0 +1,34 @@
+
+
+<div class="mt-18 md:w-1/2 mx-auto min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white shadow-lg rounded-lg w-full max-w-3xl p-4">
+    <h2 class="text-2xl font-bold text-center text-blue-700 mb-4">
+      Test: <%= @test.title %>
+    </h2>
+
+    <%= form_with url: submit_attempt_test_path(@test), method: :post do %>
+      <div class="space-y-4">
+        <% @questions.each_with_index do |q, index| %>
+          <div class="p-4 border rounded-lg bg-gray-50">
+            <p class="font-semibold text-lg text-gray-800 mb-2">
+              Q<%= index + 1 %>: <%= q.content %>
+            </p>
+
+            <div class="space-y-2 text-sm text-gray-700">
+              <% ['a', 'b', 'c', 'd'].each do |opt| %>
+                <label class="flex items-center space-x-2">
+                  <%= radio_button_tag "responses[#{q.id}]", opt, false, required: true, class: "accent-blue-600" %>
+                  <span><%= q.send("option_#{opt}") %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mt-8 text-center">
+        <%= submit_tag "Submit Test", class: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition" %>
+      </div>
+    <% end %>
+  </div>
+</div>

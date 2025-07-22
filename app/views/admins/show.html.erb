@@ -1,0 +1,51 @@
+<div class="m-5 mt-18 sm:m-18 md:w-1/2 md:m-auto">
+  
+    <div id="alert-additional-content-1" class="relative p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
+    
+      <div class="flex items-center">
+        Id:
+        <h3 class="text-lg font-medium"><%= @admin.id %></h3>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Name: <%= @admin.name %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Email: <%= @admin.email %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Class: <%= @admin.subject %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Roll number: <%= @admin.roll %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Age: <%= @admin.age %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Sex: <%= @admin.sex %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Father name: <%= @admin.fathername %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Mother name: <%= @admin.mothername %>
+      </div>
+      <div class="mt-2 mb-4 text-sm">
+        Address: <%= @admin.address %>
+      </div>
+      <div class="flex">        
+         <% if  current_user && (current_user.admin? || current_user.teacher?) %>
+          <%= button_to "Edit", edit_admin_path(@admin),method: :get, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+         <% end %>
+         <% if  current_user && current_user.admin? %>
+          <%= button_to "Delete", admin_path(@admin),method: :delete, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+         <% end %>
+        
+        <!-- date time -->
+        <div class="mt-2 flex absolute bottom-0 sm:bottom-2 right-4 text-sm">
+          <%= @admin.created_at.strftime("%d %b %Y, %I:%M %p") %>
+        </div>
+      </div>
+      
+    </div>
+</div>

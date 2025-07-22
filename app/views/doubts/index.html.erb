@@ -1,0 +1,27 @@
+
+
+<div class="md:max-w-3xl mx-auto mt-18 px-4 sm:px-4 lg:px-8">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="sm:text-3xl font-bold text-gray-800">📘 My Doubts</h2>
+    <%= link_to "➕ Ask New Doubt", new_doubt_path, class: "bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm sm:text-base" %>
+  </div>
+
+  <% if @doubts.any? %>
+    <div class="space-y-4">
+      <% @doubts.each do |d| %>
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+          <p class="font-semibold text-gray-900 mb-2">❓ Que: <%= d.question %></p> 
+           <p class="text-gray-700 text-sm sm:text-base mb-3">💡 Ans: <%= truncate(d.answer, length: 100) %></p>
+           <!--<p class="text-gray-700 text-sm sm:text-base mb-3">💡 Ans: <%= d.answer %></p> -->
+          <div class="flex">
+            <%= link_to "🔍 View Full", doubt_path(d), class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+            <%= button_to "❌ Destroy", doubt_path(d), method: :delete, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-600 text-center mt-8">No doubts asked yet. Be the first to <%= link_to "ask one", new_doubt_path, class: "text-blue-500 underline" %>!</p>
+  <% end %>
+</div>
+

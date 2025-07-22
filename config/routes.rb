@@ -1,14 +1,75 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  devise_for :users
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  resources :admins do
+    collection do
+      post 'create_student'
+      post 'create_teacher'
+      get 'profile'
+    end
+    member do
+      get 'show_student'
+      get 'edit_student'
+      patch 'update_student'
+      delete 'delete_student'
+      get 'show_teacher'
+      get 'edit_teacher'
+      patch 'update_teacher'
+      delete 'delete_teacher'
+    end
+  end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  resources :students
+
+  resources :teachers do
+    collection do
+      get 'profile', to: 'teachers#index'
+    end
+  end
+
+  resources :notices do
+    member do
+      patch 'like'
+    end
+  end
+
+  resources :grievances do
+    member do
+      patch 'resolve'
+      patch 'like'
+    end
+
+    resources :replies
+  end
+
+
+  # get 'teacher' to:'teachers#profile'
+  get 'notice', to: 'notice#index'
+  get "contact", to: "contact#index"
+  get 'about', to: "about#index"
+  get 'alumni', to: "alumni#index"
+
+
+  get '/donate', to: 'donations#new'
+  post '/donate', to: 'donations#create'
+  get '/donate/execute', to: 'donations#execute'
+  get '/donate/cancel', to: 'donations#cancel'
+
+
+  resources :tests do
+    resources :questions
+    member do
+      get 'attempt'
+      post 'submit_attempt'
+    end
+  end
+  
+  resources :attempts
+
+  resources :doubts
+
+  resources :messages, only: [:index]
+
+  root "home#index"
 end

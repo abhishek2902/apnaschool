@@ -1,0 +1,14 @@
+<div class="md:max-w-3xl mx-auto mt-36 p-6 bg-white shadow rounded">
+  <h2 class="text-xl font-bold mb-4">Your Question</h2>
+  <div class="flex items-center mb-4">
+    <%= link_to "Back", doubts_path, class: " text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+    <%= button_to "❌ Destroy", doubt_path(@doubt), method: :delete, class: "ml-2 text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" %>
+  </div>
+  <div class="space-y-4">
+      <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+        <p class="font-semibold text-gray-900 mb-2">❓ Que: <%= @doubt.question%></p> 
+        <p class="text-gray-700 text-sm sm:text-base mb-3">💡 Ans: <%= @doubt.answer %></p>
+      </div>
+  </div>
+
+</div>

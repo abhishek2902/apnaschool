@@ -1,0 +1,224 @@
+<%= render "shared/sidebar" %>
+<div class=" md:ml-50 pt-18">
+<!-- Notice seciton -->
+
+<div class="relative w-full h-[70px] bg-gray-100 overflow-hidden group">
+  <div class="absolute inset-0 flex items-center">
+    <div class="whitespace-nowrap animate-marquee group-hover:pause-marquee">
+      <% @notices.each do |notice| %>
+        <span class="text-lg font-medium text-gray-700 mx-4">
+          📢 
+          <%= link_to notice.title, notice_path(notice), class: "underline hover:text-blue-600" %>
+        </span>
+        <% end %>
+        <span class="text-lg font-medium text-gray-700 mx-4">🎉 Annual sports event on March 30th!</span>
+        <span class="text-lg font-medium text-gray-700 mx-4">🏆 Science fair registrations open!</span>
+    </div>
+  </div>
+</div>
+
+<!-- hero seciton -->
+<div class="relative w-full h-56 sm:h-[224px] md:h-[520px]" id="home">
+    <div class="absolute inset-0">
+        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+            <!-- Carousel wrapper -->
+            <div class="relative h-56 overflow-hidden md:h-130 z-0">
+                <!-- Item 1 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="https://c1.wallpaperflare.com/preview/968/730/441/building-cheyenne-photos-high-school.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 2 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="https://thumbs.dreamstime.com/b/middle-school-building-20723831.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 3 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="https://c1.wallpaperflare.com/preview/245/878/523/building-education-florida-photos.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 4 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="https://c1.wallpaperflare.com/preview/794/131/807/architecture-city-cityscape-apartment.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 5 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="https://c1.wallpaperflare.com/preview/678/379/677/aloisianum-jesuit-college-mountain-linz.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+            </div>
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+            </div>
+            <!-- Slider controls -->
+            <button type="button" class="absolute top-0 start-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button" class="absolute top-0 end-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="absolute inset-9 flex flex-col md:flex-row items-center justify-between z-10">
+        <div class="ml-4 mb-4 md:mb-0">
+            <h1 class="text-white font-medium text-4xl md:text-5xl leading-tight mb-2">Apna School</h1>
+            <p class="text-white font-regular text-2xl mb-8 sm:mt-4">Fear of the God is the begining of the wisdom</p>
+            <a href="/contact"
+                class="px-6 py-3 bg-[#c8a876] text-white font-medium rounded-full hover:bg-[#c09858]  transition duration-200">Contact
+                Us</a>
+        </div>
+    </div>
+</div>
+
+<%= render "shared/teachers" %>
+<%= render "shared/about" %>
+
+<!-- why us  -->
+<section class="text-gray-700 body-font mt-10">
+    <div class="flex justify-center text-3xl font-bold text-gray-800 text-center">
+        Why Us?
+    </div>
+    <div class="container px-5 py-12 mx-auto">
+        <div class="flex flex-wrap text-center justify-center">
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+                <div class="px-4 py-6 transform transition duration-500 hover:scale-110">
+                    <div class="flex justify-center">
+                        <img src="https://image3.jdomni.in/banner/13062021/58/97/7C/E53960D1295621EFCB5B13F335_1623567851299.png?output-format=webp" class="w-32 mb-3">
+                    </div>
+                    <h2 class="title-font font-regular text-2xl text-gray-900">Latest Cources</h2>
+                </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+                <div class="px-4 py-6 transform transition duration-500 hover:scale-110">
+                    <div class="flex justify-center">
+                        <img src="https://image2.jdomni.in/banner/13062021/3E/57/E8/1D6E23DD7E12571705CAC761E7_1623567977295.png?output-format=webp" class="w-32 mb-3">
+                    </div>
+                    <h2 class="title-font font-regular text-2xl text-gray-900">No Fees</h2>
+                </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+                <div class="px-4 py-6 transform transition duration-500 hover:scale-110">
+                    <div class="flex justify-center">
+                        <img src="https://image3.jdomni.in/banner/13062021/16/7E/7E/5A9920439E52EF309F27B43EEB_1623568010437.png?output-format=webp" class="w-32 mb-3">
+                    </div>
+                    <h2 class="title-font font-regular text-2xl text-gray-900">Time Table</h2>
+                </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+                <div class="px-4 py-6 transform transition duration-500 hover:scale-110">
+                    <div class="flex justify-center">
+                        <img src="https://image3.jdomni.in/banner/13062021/EB/99/EE/8B46027500E987A5142ECC1CE1_1623567959360.png?output-format=webp" class="w-32 mb-3">
+                    </div>
+                    <h2 class="title-font font-regular text-2xl text-gray-900">Expertise in Fields</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- gallery -->
+<section class="text-gray-700 body-font" id="gallery">
+    <div class="flex justify-center text-3xl font-bold text-gray-800 text-center py-10">
+        Gallery
+    </div>
+
+    <div class="grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+
+        <div class="group relative">
+            <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="aspect-[2/3] h-80 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+        </div>
+
+        <div class="group relative">
+            <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="aspect-[2/3] h-80 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+        </div>
+
+        <div class="group relative">
+            <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="aspect-[2/3] h-80 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+        </div>
+        <div class="group relative">
+            <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="aspect-[2/3] h-80 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+        </div>
+
+
+
+        <!-- Repeat this div for each image -->
+    </div>
+
+</section>
+
+<%= render 'shared/contact' %>
+
+</div>
+
+<!-- footer -->
+<section>
+    <footer class="bg-gray-200 text-white py-4 px-3">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="w-full md:w-1/2 md:text-center md:mb-4 mb-8">
+                <p class="text-xs text-gray-400 md:text-sm">Copyright 2024 &copy; All Rights Reserved</p>
+            </div>
+            <div class="w-full md:w-1/2 md:text-center md:mb-0 mb-8">
+                <ul class="list-reset flex justify-center flex-wrap text-xs md:text-sm gap-3">
+                    <li><a href="#contactUs" class="text-gray-400 hover:text-white">Contact</a></li>
+                    <li class="mx-4"><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</section>
+
+<script>
+    document.getElementById("hamburger").onclick = function toggleMenu() {
+        const navToggle = document.getElementsByClassName("toggle");
+        for (let i = 0; i < navToggle.length; i++) {
+          navToggle.item(i).classList.toggle("hidden");
+        }
+      };
+</script>
+
+
+<style>
+  @keyframes marquee {
+    from { transform: translateX(60%); }
+    to { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 10s linear infinite;
+  }
+  .pause-marquee {
+    animation-play-state: paused !important;
+  }
+</style>
